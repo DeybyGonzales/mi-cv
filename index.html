@@ -2,74 +2,683 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Portafolio - Deyby Gonzales</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deyby Gonzales — Dev Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #f0ede8;
+            --paper: #f7f4ef;
+            --ink: #1a1714;
+            --muted: #7a7470;
+            --accent: #d4520a;
+            --accent2: #1a6b3a;
+            --accent3: #1e3a8a;
+            --border: #ddd9d3;
+            --card: #faf8f5;
+            --tag-bg: #ede9e3;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: Arial;
-            margin: 0;
-            background: #f4f4f4;
+            font-family: 'DM Mono', monospace;
+            background: var(--bg);
+            color: var(--ink);
+            min-height: 100vh;
         }
+
+        /* ── GRAIN ── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 1000;
+            mix-blend-mode: multiply;
+        }
+
+        /* ── HEADER ── */
         header {
-            background: #007BFF;
-            color: white;
-            text-align: center;
-            padding: 20px;
+            border-bottom: 1.5px solid var(--ink);
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            background: var(--bg);
+            z-index: 100;
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
+
+        .nav-logo {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: -0.02em;
         }
-        .project {
-            background: white;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-left: 5px solid #007BFF;
+
+        .nav-logo span { color: var(--accent); }
+
+        nav {
+            display: flex;
+            gap: 32px;
         }
-        h2 {
-            color: #333;
-        }
-        a {
-            color: #007BFF;
+
+        nav a {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
             text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--ink); }
+
+        /* ── HERO ── */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 64px);
+            border-bottom: 1.5px solid var(--ink);
+        }
+
+        .hero-left {
+            padding: 80px 48px;
+            border-right: 1.5px solid var(--ink);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(3.5rem, 7vw, 6.5rem);
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            margin-top: 24px;
+        }
+
+        .hero-name .line2 {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .hero-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.9;
+            max-width: 380px;
+        }
+
+        .hero-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--ink);
+            color: var(--bg);
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            padding: 14px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            width: fit-content;
+            transition: background 0.2s, gap 0.2s;
+        }
+
+        .hero-btn:hover {
+            background: var(--accent);
+            gap: 16px;
+        }
+
+        /* ── HERO RIGHT ── */
+        .hero-right {
+            padding: 80px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 48px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5px;
+            background: var(--ink);
+            border: 1.5px solid var(--ink);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .stat {
+            background: var(--paper);
+            padding: 24px;
+            transition: background 0.2s;
+        }
+
+        .stat:hover { background: var(--tag-bg); }
+
+        .stat-n {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 2.4rem;
+            letter-spacing: -0.04em;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .stat-l {
+            font-size: 0.68rem;
+            color: var(--muted);
+            margin-top: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-marquee {
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 32px;
+            animation: marquee 14s linear infinite;
+            white-space: nowrap;
+        }
+
+        .marquee-track span {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        .marquee-track span.dot { color: var(--accent); }
+
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ── SECTION ── */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 96px 48px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 56px;
+            padding-bottom: 20px;
+            border-bottom: 1.5px solid var(--ink);
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            letter-spacing: -0.03em;
+        }
+
+        .section-count {
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 0.1em;
+        }
+
+        /* ── PROJECT GRID ── */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5px;
+            background: var(--border);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .project-card {
+            background: var(--card);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: background 0.25s;
+            position: relative;
+            cursor: default;
+        }
+
+        .project-card:hover { background: var(--paper); }
+
+        .project-card.wide {
+            grid-column: span 2;
+        }
+
+        .p-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .p-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .p-num {
+            font-size: 0.65rem;
+            color: var(--border);
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.08em;
+        }
+
+        .p-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            line-height: 1.3;
+            letter-spacing: -0.02em;
+        }
+
+        .p-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.8;
+            flex: 1;
+        }
+
+        .p-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: var(--tag-bg);
+            color: var(--ink);
+            border: 1px solid var(--border);
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .project-card:hover .tech-tag {
+            background: white;
+            border-color: var(--ink);
+        }
+
+        .p-arrow {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 28px;
+            height: 28px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: var(--muted);
+            transition: all 0.2s;
+        }
+
+        .project-card:hover .p-arrow {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: rotate(45deg);
+        }
+
+        /* ── SKILLS ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5px;
+            background: var(--border);
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-item {
+            background: var(--card);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.2s;
+        }
+
+        .skill-item:hover { background: var(--paper); }
+
+        .skill-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .skill-name {
+            font-size: 0.78rem;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1.5px solid var(--ink);
+            padding: 28px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        footer p {
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        footer .footer-accent {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ── REVEAL ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-left { border-right: none; border-bottom: 1.5px solid var(--ink); }
+            header { padding: 0 24px; }
+            nav { display: none; }
+            .section { padding: 64px 24px; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-card.wide { grid-column: span 1; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-left, .hero-right { padding: 48px 24px; }
         }
     </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
-    <h1>Deyby Gonzales</h1>
-    <p>Portafolio de Proyectos</p>
+    <div class="nav-logo">DG<span>.</span></div>
+    <nav>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#skills">Skills</a>
+        <a href="mailto:deyby@email.com">Contacto</a>
+    </nav>
 </header>
 
-<div class="container">
-
-    <h2>Sobre mí</h2>
-    <p>Estudiante de software con experiencia en desarrollo web y bases de datos.</p>
-
-    <h2>Proyectos</h2>
-
-    <div class="project">
-        <h3>🚗 Sistema de alquiler de autos</h3>
-        <p>Aplicación para gestionar alquiler de vehículos, disponibilidad y registros.</p>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-left">
+        <div>
+            <div class="hero-eyebrow">Diseño & Desarrollo de Software</div>
+            <h1 class="hero-name">
+                Deyby<br>
+                <span class="line2">Gonzales</span>
+            </h1>
+        </div>
+        <div class="hero-bottom">
+            <p class="hero-desc">
+                Estudiante apasionado por el desarrollo web, bases de datos y aplicaciones. Construyo productos que combinan buen código con buena experiencia.
+            </p>
+            <a href="#proyectos" class="hero-btn">
+                Ver proyectos
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
     </div>
-
-    <div class="project">
-        <h3>💳 QuickPay</h3>
-        <p>Plataforma web de pagos digitales.</p>
+    <div class="hero-right">
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-n">8</div>
+                <div class="stat-l">Proyectos</div>
+            </div>
+            <div class="stat">
+                <div class="stat-n">3+</div>
+                <div class="stat-l">Lenguajes</div>
+            </div>
+            <div class="stat">
+                <div class="stat-n">Full</div>
+                <div class="stat-l">Stack dev</div>
+            </div>
+            <div class="stat">
+                <div class="stat-n">∞</div>
+                <div class="stat-l">Curiosidad</div>
+            </div>
+        </div>
+        <div class="hero-marquee">
+            <div class="marquee-track">
+                <span>Java</span><span class="dot">✦</span>
+                <span>Node.js</span><span class="dot">✦</span>
+                <span>MySQL</span><span class="dot">✦</span>
+                <span>Python</span><span class="dot">✦</span>
+                <span>MongoDB</span><span class="dot">✦</span>
+                <span>Express</span><span class="dot">✦</span>
+                <span>HTML / CSS</span><span class="dot">✦</span>
+                <span>REST API</span><span class="dot">✦</span>
+                <!-- duplicate for seamless loop -->
+                <span>Java</span><span class="dot">✦</span>
+                <span>Node.js</span><span class="dot">✦</span>
+                <span>MySQL</span><span class="dot">✦</span>
+                <span>Python</span><span class="dot">✦</span>
+                <span>MongoDB</span><span class="dot">✦</span>
+                <span>Express</span><span class="dot">✦</span>
+                <span>HTML / CSS</span><span class="dot">✦</span>
+                <span>REST API</span><span class="dot">✦</span>
+            </div>
+        </div>
     </div>
-
-    <div class="project">
-        <h3>🗄️ CRUD de usuarios</h3>
-        <p>Sistema con operaciones crear, leer, actualizar y eliminar usuarios.</p>
-    </div>
-
-    <div class="project">
-        <h3>🌐 Página HTML personal</h3>
-        <p>Mi primera página web desplegada en Render.</p>
-    </div>
-
 </div>
 
+<!-- PROJECTS -->
+<div class="section" id="proyectos">
+    <div class="section-header reveal">
+        <h2 class="section-title">Proyectos</h2>
+        <span class="section-count">08 trabajos</span>
+    </div>
+    <div class="project-grid reveal">
+
+        <!-- Featured wide -->
+        <div class="project-card wide">
+            <div class="p-top">
+                <span class="p-icon">🚗</span>
+                <span class="p-num">01</span>
+            </div>
+            <div class="p-title">Sistema de alquiler de autos</div>
+            <p class="p-desc">Sistema completo para gestionar el alquiler de vehículos, disponibilidad en tiempo real y control de uso. Integración con base de datos relacional para registros y reportes.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">💳</span>
+                <span class="p-num">02</span>
+            </div>
+            <div class="p-title">QuickPay</div>
+            <p class="p-desc">Plataforma web de pagos digitales con flujos seguros y UI intuitiva.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">MongoDB</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">🚇</span>
+                <span class="p-num">03</span>
+            </div>
+            <div class="p-title">Metro Lima GO</div>
+            <p class="p-desc">App para mejorar la experiencia del transporte en Lima con rutas y tiempos en tiempo real.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Web App</span>
+                <span class="tech-tag">Móvil</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">🌱</span>
+                <span class="p-num">04</span>
+            </div>
+            <div class="p-title">EcoCoins</div>
+            <p class="p-desc">Plataforma que incentiva el reciclaje mediante recompensas digitales y gamificación.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Web App</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">🗄️</span>
+                <span class="p-num">05</span>
+            </div>
+            <div class="p-title">CRUD de usuarios</div>
+            <p class="p-desc">API REST completa para gestión de usuarios con operaciones crear, leer, actualizar y eliminar.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">🐍</span>
+                <span class="p-num">06</span>
+            </div>
+            <div class="p-title">Estructuras de datos</div>
+            <p class="p-desc">Implementación desde cero de pilas, colas, listas enlazadas y árboles en Python.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Python</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">🗃️</span>
+                <span class="p-num">07</span>
+            </div>
+            <div class="p-title">Sistema MySQL + Java</div>
+            <p class="p-desc">Integración de base de datos con Java usando JDBC y consultas SQL avanzadas.</p>
+            <div class="p-tech">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">MySQL</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+        <div class="project-card">
+            <div class="p-top">
+                <span class="p-icon">🌐</span>
+                <span class="p-num">08</span>
+            </div>
+            <div class="p-title">Página web personal</div>
+            <p class="p-desc">Portafolio web desplegado en la nube. El punto de partida de todo.</p>
+            <div class="p-tech">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+            </div>
+            <div class="p-arrow">↗</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section" id="skills" style="padding-top: 0;">
+    <div class="section-header reveal">
+        <h2 class="section-title">Tecnologías</h2>
+        <span class="section-count">Stack actual</span>
+    </div>
+    <div class="skills-grid reveal">
+        <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Java</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent2)"></div><span class="skill-name">Node.js</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent3)"></div><span class="skill-name">Python</span></div>
+        <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">MySQL</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent2)"></div><span class="skill-name">MongoDB</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent3)"></div><span class="skill-name">Express.js</span></div>
+        <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">HTML / CSS</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent2)"></div><span class="skill-name">REST API</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent3)"></div><span class="skill-name">Git</span></div>
+        <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">JDBC</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent2)"></div><span class="skill-name">Desarrollo móvil</span></div>
+        <div class="skill-item"><div class="skill-dot" style="background:var(--accent3)"></div><span class="skill-name">Render / Cloud</span></div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>Diseñado & construido por <span class="footer-accent">Deyby Gonzales</span></p>
+    <p>Lima, Perú — 2025</p>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+                setTimeout(() => e.target.classList.add('visible'), i * 80);
+            }
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
