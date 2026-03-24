@@ -7,16 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f0ede8;
-            --paper: #f7f4ef;
-            --ink: #1a1714;
-            --muted: #7a7470;
-            --accent: #d4520a;
-            --accent2: #1a6b3a;
-            --accent3: #1e3a8a;
-            --border: #ddd9d3;
-            --card: #faf8f5;
-            --tag-bg: #ede9e3;
+            --bg: #0a0908;
+            --paper: #0f0e0c;
+            --ink: #f0ede8;
+            --muted: #6b6560;
+            --accent: #e8601a;
+            --accent2: #22883f;
+            --accent3: #2e57c2;
+            --border: #1f1d1a;
+            --card: #111009;
+            --tag-bg: #191714;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,15 +34,15 @@
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.1'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 1000;
-            mix-blend-mode: multiply;
+            mix-blend-mode: screen;
         }
 
         /* ── HEADER ── */
         header {
-            border-bottom: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--border);
             padding: 0 48px;
             display: flex;
             align-items: center;
@@ -84,12 +84,12 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             min-height: calc(100vh - 64px);
-            border-bottom: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--border);
         }
 
         .hero-left {
             padding: 80px 48px;
-            border-right: 1.5px solid var(--ink);
+            border-right: 1.5px solid var(--border);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -173,8 +173,8 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5px;
-            background: var(--ink);
-            border: 1.5px solid var(--ink);
+            background: var(--border);
+            border: 1.5px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
         }
@@ -244,7 +244,7 @@
             justify-content: space-between;
             margin-bottom: 56px;
             padding-bottom: 20px;
-            border-bottom: 1.5px solid var(--ink);
+            border-bottom: 1.5px solid var(--border);
         }
 
         .section-title {
@@ -340,8 +340,8 @@
         }
 
         .project-card:hover .tech-tag {
-            background: white;
-            border-color: var(--ink);
+            background: #1c1a17;
+            border-color: var(--muted);
         }
 
         .p-arrow {
@@ -404,7 +404,7 @@
 
         /* ── FOOTER ── */
         footer {
-            border-top: 1.5px solid var(--ink);
+            border-top: 1.5px solid var(--border);
             padding: 28px 48px;
             display: flex;
             align-items: center;
@@ -433,7 +433,7 @@
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .hero { grid-template-columns: 1fr; }
-            .hero-left { border-right: none; border-bottom: 1.5px solid var(--ink); }
+            .hero-left { border-right: none; border-bottom: 1.5px solid var(--border); }
             header { padding: 0 24px; }
             nav { display: none; }
             .section { padding: 64px 24px; }
